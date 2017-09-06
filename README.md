@@ -6,7 +6,8 @@ When adding a lesson, please use a standard naming format NN-lesson-name, where 
 
 Also, add a link to the lesson on the index page, using a header four level title and bulleted list of links to the item. e.g.:
 
-#### R-markdown workshop 
+#### R-markdown workshop by Jeff Oliver
 
 + [knitr lesson](00_knitr_lesson.html)
 + [iris analysis](01_iris_analysis.html)
++ [Reproducible report with knitr full lesson](https://jcoliver.github.io/learn-r/005-intro-knitr.html)
