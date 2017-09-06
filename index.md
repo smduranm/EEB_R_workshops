@@ -12,6 +12,8 @@ Topics of interest for learning and teaching can be found on the [google spreads
 
 + [knitr lesson](00_knitr_lesson.html)
 + [iris analysis](01_iris_analysis.html)
++ [Reproducible report with knitr full lesson](https://jcoliver.github.io/learn-r/005-intro-knitr.html)
+
 
 
 
