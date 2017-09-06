@@ -1,0 +1,66 @@
+
+# Header level 1 pound symbol once
+## Header level 2 pound symbol twice
+### Header level 3 pound symbol three times...
+
+---
+title: "knitr lesson"
+author: "Sandra Duran"
+date: "August 31, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+#Intro to knitr
+
+This is my first knitr document
+
+Bulleted lists
+
++ Regular font
++ **bold font**
++ _italic_font_
+
+Numbered lists
+
+1. First element
+2. Second element
+3. Third element
+
+[text to display] (url)
+
+[University of Arizona](http://www.arizona.edu)
+
+<!-- ![caption for image](filename/filepath or URL) --> 
+<!-- xShift+Control+C to comment -->
+
+![The White Rhinoceros](Images/rhino.jpg)
+
+Subscript: log~10~  
+Superscript: x^2^  
+
+Inline latex
+$$E = mc^2$$
+<!-- double dollar sign exclusively for Latex -->
+
+$$
+\begin{aligned}
+\begin{array}[l]
+\displaystyle \int 1 = x + C \\
+\displaystyle \int x = \frac {x^2}{2} + C \\
+\displaystyle \int x^2 = \frac{x^3}{3} + C \\
+\end{array}
+\end{aligned}
+$$
+
+
+

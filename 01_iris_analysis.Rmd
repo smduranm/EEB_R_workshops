@@ -1,0 +1,54 @@
+---
+title: "Iris shape analyses"
+author: "Sandra Duran"
+date: "August 31, 2017"
+output:
+  html_document: default
+---
+
+## Introduction
+
+In this report we test for the relationship between different parts of morphology in _Iris_ flowers
+
+## Methods
+
+Analyses are based on built-in data for three _Iris_ species. We used linear regression to test for relationships.
+
+## Results
+
+<!-- Code block using R code to run analysis below -->
+
+
+```{r}
+#Plot the iris data for length and width
+
+# if you don't want to show your code only the plot you can type:
+#```{r echo = FALSE}
+
+plot(x = iris$Petal.Length,
+     y = iris$Petal.Width,
+     xlab = "Petal length (cm)",
+     ylab = "Petal width (cm)")
+
+```
+
+We tested the relationship between petal length and petal width with linear regression
+
+```{r}
+length.v.width <- lm(iris$Petal.Length ~ iris$Petal.Width)
+model.summary<- summary (length.v.width)
+#model.summary  after it won't print the summary of the test
+```
+
+Petal width and petal length were highly correlated (r^2^ = `r round(model.summary$adj.r.squared)`).
+<!-- the above shows the R2 with seven digits -->
+<!-- to reduce the number of digits we add round after r` -->
+
+```{r eval = FALSE}
+#This is bad code, you can use eval to show the code but not run it.
+plot(xlab= "no data")
+```
+
+
+```
+
