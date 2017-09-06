@@ -4,6 +4,8 @@ If you are interesting in teaching a specific topic please sing on the [google s
 
 When adding a lesson, please use a standard naming format NN-lesson-name, where NN is the consecutive lesson number (for lessons 1-9, use two-digit format, i.e. 08).
 
+Place all data files used in the workshop in the data directory
+
 Also, add a link to the lesson on the index page, using a header four level title and bulleted list of links to the item. e.g.:
 
 #### R-markdown workshop by Jeff Oliver
