@@ -2,9 +2,11 @@
 
 ### Workshop details
 
-These workshops is a series of R-workshops on data analysis on tools given by postdocs and PhD students for researchers in EEB and other environmental sciences departments.
+The EEB_R_workshops are an initiative from the Enquist lab to provide a space where researchers from EEB and other environmental science departments can learn the basis of data analysis and statistical methods, and how to apply them in their ecological research. 
 
-Topics of interest for learning and teaching can be found on the [google spreadsheet](https://docs.google.com/spreadsheets/d/1NEVwklU-p2PtpfvUgVEKCb84Lhw-l7pqHVbj4rsy2uI/edit#gid=0)
+These workshops will be conducted every other Thursday at 1 PM in BSW room TBD. Anyone is welcome to teach a lesson, and instructors are required to generate a R-markdown report at the end of each lesson to make the material available online.
+
+Check our schedule for future workshops on the [google spreadsheet](https://docs.google.com/spreadsheets/d/1NEVwklU-p2PtpfvUgVEKCb84Lhw-l7pqHVbj4rsy2uI/edit#gid=0), and feel free to add a topic of your interest. For those interested in teaching, please add topic, name, date, and your github ID to add you to the repository as collaborator.
 
 ### Lessons
 
