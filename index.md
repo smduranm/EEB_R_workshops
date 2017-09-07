@@ -8,7 +8,7 @@ Topics of interest for learning and teaching can be found on the [google spreads
 
 ### Lessons
 
-#### R-markdown workshop 
+#### R-markdown workshop by Jeff Oliver
 
 + [knitr lesson](00_knitr_lesson.html)
 + [iris analysis](01_iris_analysis.html)
