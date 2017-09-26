@@ -15,7 +15,7 @@ Check out our schedule for future workshops on the [google spreadsheet](https://
 + [knitr lesson](00_knitr_lesson.html)
 + [iris analysis](01_iris_analysis.html)
 + [Reproducible report with knitr full lesson](https://jcoliver.github.io/learn-r/005-intro-knitr.html)
-
++ [Introduction to Git and GitHub in RStudio](02_github-intro.html)
 
 
 
