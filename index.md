@@ -10,19 +10,21 @@ Check out our schedule for future workshops on the [google spreadsheet](https://
 
 ### Lessons
 
-#### 1) R-markdown workshop by Jeff Oliver
+### 1) R-markdown workshop by Jeff Oliver
 
 + [knitr lesson](00_knitr_lesson.html)
 + [iris analysis](01_iris_analysis.html)
 + [Reproducible report with knitr full lesson](https://jcoliver.github.io/learn-r/005-intro-knitr.html)
 <<<<<<< HEAD
 
-#### 2) Using Git and Github by Jeff Oliver
+### 2) Using Git and Github by Jeff Oliver
 =======
 
 + [Introduction to Git and GitHub in RStudio](02_github-intro.html)
 
-#### 3) Data access and tools of the BIEN botanical database by Brian Maitner
+### 3) Data access and tools of the BIEN botanical database by Brian Maitner
+
+
 
 + [RBIEN tutorial](RBIEN_tutorial.html)
 
