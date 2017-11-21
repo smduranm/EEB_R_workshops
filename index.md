@@ -19,11 +19,19 @@ Check out our schedule for future workshops on the [google spreadsheet](https://
 
 #### 2) Using Git and Github by Jeff Oliver
 =======
->>>>>>> b736cdde99333dca9206f140b6fd84e560daf2b2
+
 + [Introduction to Git and GitHub in RStudio](02_github-intro.html)
 
 #### 3) Data access and tools of the BIEN botanical database by Brian Maitner
 
++ [RBIEN tutorial](RBIEN_tutorial.html)
 
-#### 4) Phylogenetics and macroevolution by Liz Miller
+#### 4) Phylogenetics and macroevolution in R by Liz Miller
+
++ [phylogenetics analysis] (04_phylogenetics_lesson_Miller.html)
++ [Datasets] (https://github.com/smduranm/EEB_R_workshops/tree/master/data)
+ 
+
+
+
 
