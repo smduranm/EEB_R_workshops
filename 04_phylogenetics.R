@@ -79,7 +79,7 @@ http://datadryad.org/bitstream/handle/10255/dryad.48798/Rabosky_et_al_timetree.t
 
 # Read the tree from your file:
 
-fish.tree <- read.tree("fish_tree.tree")
+fish.tree <- read.tree("data/04_fish_tree.tree")
 fish.tree  #This tree has 7822 tips and 7821 nodes.
 
 ###  Imagine we want to study butterflyfishes. How would we get the butterflyfish clade out of this big tree? It would be cumbersome to drop some 7,000 tips, so it's easiest to use extract.clade. But what node belongs to the butterflyfish family?
@@ -116,8 +116,8 @@ write.tree(tree, file="butterflyfishes.tree")
 #link for data: http://www.phytools.org/Cali2017/data/Barbetdata.csv
 #link for tree: http://www.phytools.org/Cali2017/data/BarbetTree.nex
 
-data<- read.csv("Barbetdata.csv")
-tree<- read.nexus("BarbetTree.nexus")
+data<- read.csv("data/04_Barbetdata.csv")
+tree<- read.nexus("data/04_BarbetTree.nexus")
 
 ## This tree is in the NEXUS format. The previous trees were in Newick format. You can see the difference if you open the files in a text editor.
 
