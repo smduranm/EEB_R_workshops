@@ -22,7 +22,7 @@ Check out our schedule for future workshops on the [google spreadsheet](https://
 
 ### 3) Data access and tools of the BIEN botanical database by Brian Maitner
 
-+ [RBIEN tutorial in R](03_RBIEN_tutorial.html)
++ [RBIEN tutorial in R](03_RBIEN_tutorial.Rmd)
 + [RBIEN tutorial in powerpoint](03_RBIEN_tutorial_4_24_2017.pptx)
 
 ### 4) Phylogenetics and macroevolution in R by Liz Miller
