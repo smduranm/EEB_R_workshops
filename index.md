@@ -22,17 +22,17 @@ Check out our schedule for future workshops on the [google spreadsheet](https://
 
 ### 3) Data access and tools of the BIEN botanical database by Brian Maitner
 
-+ [RBIEN tutorial in R](RBIEN/tutorials/RBIEN_tutorial.Rmd)
-+ [RBIEN tutorial in powerpoint](https://github.com/smduranm/EEB_R_workshops/blob/master/RBIEN_tutorial_4_24_2017.pptx)
++ [RBIEN tutorial in R](04_RBIEN/tutorials/RBIEN_tutorial.Rmd)
++ [RBIEN tutorial in powerpoint](https://github.com/smduranm/EEB_R_workshops/blob/master/04_RBIEN_tutorial_4_24_2017.pptx)
 
 ### 4) Phylogenetics and macroevolution in R by Liz Miller
 
 + [Phylogenetics analysis](04_phylogenetics_lesson_Miller.html)
 + [Datasets](https://github.com/smduranm/EEB_R_workshops/tree/master/data)
 
-### 5) Basic tutorial on ggplot by Adam Chmurzynski
+### 5) Basic tutorial on ggplot2 by Adam Chmurzynski
 
-
++ [ggplot2_tutorial](05_ggplot2_tutorial.html)
  
 
 

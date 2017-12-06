@@ -1,0 +1,71 @@
+---
+title: "ggplot2_tutorial"
+author: "Adam Chmurzynski"
+date: "December 6, 2017"
+output: html_document
+---
+
+**Lesson on ggplot2**
+by Adam Chmurzynski
+
+In this exercise we will work with a dataset iris that is available in R. Follow the steps below to upload the appropriate library and datasets.
+
+Plots take data frames as input, allowing us to visualize columns and rows. There are two main elements: aethetics(aes) and geoms
+Use the '+' operator (think of adding elements to your figure) to 
+concatenate plots, geoms and scales into complex images.
+
+
+```{r}
+library(ggplot2)
+data(iris)
+head(iris)
+
+iris_plot_0 <- ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + 
+                geom_point(size = 1) + geom_line()
+```
+
+Geoms are visual elements we use to look at rows (observations)
+Aesthetics are visual features used to manipulate geoms by column
+
+```{r}
+iris_plot_1 <- ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + 
+  geom_point(aes(shape=Location)) +
+  geom_point(aes(color=Species, size=Petal.Width))
+
+mm <- lm(Petal.Length~Sepal.Length, iris)
+
+iris_plot_2 <- ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + 
+  geom_point(aes(color=Species, size=Petal.Width)) +
+  geom_smooth(method="lm", se=FALSE, color="black")
+
+```
+Scales are applied to aesthetics to map numerical ranges from data to styles 
+
+```{r}
+iris_plot_3 <- ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + 
+  geom_point(size = 2, aes(color=Sepal.Length, alpha=Sepal.Width)) +
+  scale_x_continuous(limits=c(0, 10)) +
+  scale_y_continuous(limits=c(0, 5)) +
+  scale_color_continuous(low="#728D23", high="#AB74D0") 
+  #scale_alpha_continuous(range=c(0.05, 0.5))
+```
+
+Faceting creates multiple plots of pairwise comparisons along a factor
+```{r}
+iris_plot_0 <- iris_plot_0 + facet_grid(Species ~ .)
+iris_plot_4 <- iris_plot_0 + 
+  #geom_text(p-values, aes(Species))
+  facet_grid(Species ~ .) +
+  #geom_smooth(method="loess", se=TRUE, color="red", fullrange=TRUE)
+  geom_smooth(method="lm", se=TRUE, color="blue", fullrange=TRUE)
+  
+print(iris_plot_0)
+  
+```
+
+
+
+
+
+
+
