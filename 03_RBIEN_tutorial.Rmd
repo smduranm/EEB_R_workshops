@@ -2,7 +2,9 @@
 title: "RBIEN Tutorial"
 author: "Brian Maitner"
 date: "January 1, 2017"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
