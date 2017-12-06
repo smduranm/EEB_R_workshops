@@ -1,0 +1,253 @@
+---
+title: "04_phylogenetics_lesson_Miller"
+author: "Liz Miller"
+date: "11/4/2017"
+output: html_document
+---
+
+**Lesson on phylogenetics in R- October 12 2017**
+by Liz Miller: ecmiller@email.arizona.edu
+
+In this script, I will go over basics of reading trees in R, what the tree object looks like, some common functions for manipulating trees, and simple plotting. At the end, we will do a PGLS analysis. All of the libraries here have tons of additional functionality that I couldn't cover today! The goal is to get you started with using phylogenies in R.
+
+**Places to find help:**
+
++ Analyses of Phylogenetics and Evolution with R by Emmanuel Paradis (author of ape) can find free ebook pdf on google. Very helpful!!!
+
++ [R-sig-phylo email list serv](https://www.mail-archive.com/r-sig-phylo@r-project.org/), useful for looking up error messages.
+
++ [Phytools blog](blog.phytools.org): by Liam Revell (author of phytools package)
+
+
+**Essential packages! Install if you haven't already:**
+
+```{r}
+library(ape)   #the "original" one. Needed to read and plot trees in R
+# ape stands for "analysis of phylogenetics and evolution"
+
+library(geiger)   #expands capabiltiies of ape, some macroevolutionary analyses available like fitting Brownian motion and related models
+
+library(phytools)   #mostly for tree manipulation
+
+library(caper)   #includes even more analyses like PGLS
+# caper stands for "comparative analysis of phylogenetics and evolution in R"
+```
+
+
+**Tree Structure in R**
+
+You can write out a simple tree longhand. This is the "Newick" format, where parentheses and commas indicate relationships. Then, we will look at what tree objects in R are made of. Finally we will plot the tree.
+
+```{r}
+text.string<-
+  "(((((((cow, pig),whale),(bat,(lemur,human))),(robin,iguana)),coelacanth),gold_fish),shark);"
+
+vert.tree<-read.tree(text=text.string)
+
+### Try printing the vert.tree object to the screen to get a sense for what the tree object looks like in R.
+
+vert.tree
+str(vert.tree)
+
+## The tree object contains a set of lists: $edge, $tip.label, $Nnode
+
+vert.tree$tip.label  # Is a list of tip labels in the tree.
+
+## Now plot the tree. The simplest way is just using plot()
+
+plot(vert.tree)
+
+## You can make some changes to the appearance easily:
+
+plot(vert.tree, edge.width = 2)
+plot(vert.tree, edge.width = 2, type="fan")
+
+## Something more complicated: coloring the mammal clade
+
+wh <- which.edge(vert.tree, c("cow", "pig", "whale", "bat", "lemur", "human") )
+
+colo<- rep("black", Nedge(vert.tree)) # define a default color. The colo object is going to have a color identifyer for every edge (=branch) in our tree
+
+colo[wh] <- "red"
+
+plot(vert.tree, edge.color=colo, no.margin=TRUE, edge.width=2, show.tip.label=TRUE)
+
+```
+
+The _Analyses of Phylogenetics and Evolution with R_ book has tons of plotting examples. I can usually figure out what I want to plot from that book alone.
+
+Note that tips and nodes in the tree are numbered in a systematic way. This is really important to know for any tree manipulation you want to do. The tips are numbered from 1 to N tips (in the same order as the $tip.labels object), and the nodes are numbered from N tips+1 to N nodes. The root is always numbered first (equal to N tips+1). The number of nodes will always equal the number of tips minus 1.   
+
+We can visualize the node numbers:
+
+```{r}
+plot(vert.tree) 
+nodelabels() #visualize the node nabels. So this tree has 11 tips. So the root node is #12, and nodes are counted out from there. The number of nodes will always be equal to #tips minus 1. 
+```
+
+**Basic tree manipulation**
+
+Say we only want a tree of mammals. There are two ways to get this from the tree we have: cut out anything that isn't a mammal, or extract the mammal clade by itself. I'll demonstrate both ways.
+
++ Option 1: cut anything out that isn't a mammal
+
+```{r}
+new.tree <- drop.tip(vert.tree, c("shark", "gold_fish", "coelacanth", "iguana", "robin"))
+
+plot(new.tree)
+```
+
+Notice that we added the underscore for gold fish. If you print vert.tree$tip.label, you notice it is written as gold_fish in the list object. When you plot it, the name has a space instead. If you forget the underscore, the function won't be able to find "gold fish", so it will be left in your tree. 
+
+
++ Option 2: just extract the clade for mammals. This requires you to know what node number belongs to that clade. 
+
+```{r}
+plot(vert.tree) 
+nodelabels()  # So the mammal clade is node #16
+
+new.tree2 <- extract.clade(vert.tree, 16)
+plot(new.tree2) 
+```
+
+The objects new.tree and new.tree2 are identical. Whichever option you use will depend on what makes sense for your tree. If you only want to remove a handful of taxa (perhaps not monophyletic), use drop.tip. If you want a monophyletic clade to be cut out of a bigger tree, use extract.clade. 
+
+
+** Advanced tree manipulation with a huge tree**
+
+Now let's work with a gigantic tree. This will force us to use some tree manipulation functions.
+
+This is a tree of all ray-finned fishes from Rabosky et al. 2013 (over 7,000 species!!!!!!) To download, [go to this link](http://datadryad.org/bitstream/handle/10255/dryad.48798/Rabosky_et_al_timetree.tre?sequence=1), use Select All, then copy and paste into a text editor like Text Wrangler. Save in your working directory with the file extension ".tree". Avoid ".txt" for tree files.
+
+You'll notice this tree looks like the short one we wrote out by hand, except there are numbers. These are the branch lengths. Because this tree is time-calibrated, the branch lengths are in units of Millions of Years. You can also have branch lengths in units of substitutions, for example. If you have no branch lengths, like our tree before, then you have a cladogram, which only shows relationships of taxa.
+
+DO NOT plot this tree in the R console! It is very big, so it will take a long time to plot!
+
+Let's cut this tree down to something more managable.
+
+```{r}
+# Read the tree from your file:
+fish.tree <- read.tree("fish_tree.tree")
+fish.tree  #This tree has 7822 tips and 7821 nodes.
+```
+
+Imagine we want to study butterflyfishes. How would we get the butterflyfish clade out of this big tree? It would be cumbersome to drop some 7,000 tips, so it's easiest to use extract.clade. But what node belongs to the butterflyfish family?
+
+To find out, use the function findMRCA in phytools!! This requires you to know what tips correspond to the clade you want, so you need to know something about your clade in advance. 
+
+```{r}
+
+findMRCA(fish.tree, tips=c("Chaetodon_melapterus", "Johnrandallia_nigrirostris"))  
+
+## that is the node you want to use in extract.clade.
+
+tree <- extract.clade(fish.tree, 9164) #or you can just use findMRCA directly in the extract.clade function
+
+tree # this tree has 94 species. 
+
+### Now this is something more easily plotted.
+plot(tree)
+plot(tree, show.tip.label=FALSE)
+axisPhylo() # Shows the scale of the branch lengths in millions of years.
+
+```
+
+So we know that the butterflyfish family has a crown age of about 50 million years.
+
+Let's say we wanted that crown age to be more precise for downstream analyses. You can get the age of any node using the branching.times() function.
+
+```{r}
+branching.times(tree) #remember the counting rules for nodes (above) So the node numbered #tips + 1 is the root node.
+
+node_ages=as.data.frame(branching.times(tree))
+
+node_ages[row.names(node_ages) == findMRCA(tree, c(tree$tip.label[1],tree$tip.label[5])),]
+```
+
+Now we want to save this tree for future analyses. Use the "write.tree" function, and give the new tree a name:
+
+```{r}
+write.tree(tree, file="butterflyfishes.tree")
+```
+
+
+***PGLS: Phylogenetic generalized least squares***
+
+Finally, we will do a PGLS. PGLS is a method used to account for phylogenetic relatedness of species when you're interested in correlations between numeric variables. This is probably the most common type of comparative analysis. It is very flexible, and you can compare multiple factors, or even categorical factors (using an extension of the method not shown here).
+
+These data for barbets (a king of songbird) include various factors like wing length and song frequency. To download this data, go to the links, and copy+paste into Text Wrangler. Save the trait data as a ".csv" file, and the tree as a ".nex" file.
+
+[Trait data](http://www.phytools.org/Cali2017/data/Barbetdata.csv)
+[Phylogeny](http://www.phytools.org/Cali2017/data/BarbetTree.nex)
+
+You'll notice this tree is in Nexus instead of Newick format. Nexus allows for more detailed information, and includes "blocks" of information like the taxa block. We need to read these in differently, but otherwise there shouldn't be much difference to working with Newick vs. Nexus.
+
+```{r}
+data<- read.csv("Barbetdata.csv")
+tree<- read.nexus("BarbetTree.nexus")
+```
+
+Note we used "read.nexus" instead of "read.tree".
+
+Before using PGLS or many other comparative methods, we need to check that the species in the tree match the species in the data and vice-versa. There is a handy function to do that:
+
+```{r}
+check <- name.check(tree, data, data.names=data$Species)
+check
+
+## There are 9 species in the phylogeny for which we don't have data. Let's just cut these out.
+
+new.tree <- drop.tip(tree, check$tree_not_data)
+name.check(new.tree, data, data.names=data$Species) # Now we should be good
+```
+
+We are going to perform PGLS using the caper package. This package works by fusing the trait data and tree into a "comparative data" object.
+
+```{r}
+comp.data<-comparative.data(new.tree, data, 
+                            names.col="Species", vcv.dim=2, 
+                            warn.dropped=TRUE)
+
+comp.data ## look at the comp.data object
+```
+
+Note that if there are species in the data not in the tree, or vise-versa, it will automatically drop these. This may or may not be what you want, so it's best to check first.
+
+We will first test if a species' altitude is related to the frequency of its song, while accounting for non-independence due to phylogenetic relatedness.
+
+```{r}
+model1 <- pgls(Lnote~Lnalt, lambda="ML", data=comp.data)
+summary(model1)
+```
+
+Look at the lambda parameter. Lambda is a measure of phylogenetic signal of the residual error of the variables. It ranges from 0-1. When lambda=0, this means there is no effect of phylogeny. When it is =1, the structure of the residual error follows Brownian motion along the tree.
+
+You can also plot the liklihood surface of lambda:
+
+```{r}
+lm.lk<-pgls.profile(model1, which="lambda")
+plot(lm.lk)
+```
+
+Next, we will add an additional variable that potentially interacts with altitude: wing length:
+
+```{r}
+model2 <- pgls(Lnote~Lnalt+wing, lambda="ML", data=comp.data)
+summary(model2)
+```
+
+
+**Some additional packages that I didn't cover here:**
+
+The four packages loaded here can collectively do tons of analyses including ancestral state reconstruction, fitting models of evolution like Brownian motion, simulate phylogenies, make lineage-through-time plots, etc etc. If there is a specific thing you want to do, you can usually find a tutorial for it online.
+
+Here are some more packages you might want to use:
+
++ diversitree   (ancestral state reconstruction, diversification rates, -SSE models)
+
++ phangorn (some more tree manipulation functions. I use Ancestors() and Descendants() often. It can do some analyses as well but I don't know the full extent of it)
+
++ picante (community phylogenetics)
+
+
+
