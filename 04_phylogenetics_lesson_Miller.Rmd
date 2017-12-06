@@ -167,7 +167,7 @@ node_ages[row.names(node_ages) == findMRCA(tree, c(tree$tip.label[1],tree$tip.la
 Now we want to save this tree for future analyses. Use the "write.tree" function, and give the new tree a name:
 
 ```{r}
-write.tree(tree, file="butterflyfishes.tree")
+write.tree(tree, file="04_butterflyfishes.tree")
 ```
 
 

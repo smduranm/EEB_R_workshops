@@ -296,7 +296,7 @@ axisPhylo() # Shows the scale of the branch lengths in millions of years.</code>
 node_ages[row.names(node_ages) == findMRCA(tree, c(tree$tip.label[1],tree$tip.label[5])),]</code></pre>
 <pre><code>## [1] 40.22929</code></pre>
 <p>Now we want to save this tree for future analyses. Use the “write.tree” function, and give the new tree a name:</p>
-<pre class="r"><code>write.tree(tree, file=&quot;butterflyfishes.tree&quot;)</code></pre>
+<pre class="r"><code>write.tree(tree, file=&quot;04_butterflyfishes.tree&quot;)</code></pre>
 <p><strong><em>PGLS: Phylogenetic generalized least squares</em></strong></p>
 <p>Finally, we will do a PGLS. PGLS is a method used to account for phylogenetic relatedness of species when you’re interested in correlations between numeric variables. This is probably the most common type of comparative analysis. It is very flexible, and you can compare multiple factors, or even categorical factors (using an extension of the method not shown here).</p>
 <p>These data for barbets (a king of songbird) include various factors like wing length and song frequency. To download this data, go to the links, and copy+paste into Text Wrangler. Save the trait data as a “.csv” file, and the tree as a “.nex” file.</p>
