@@ -127,7 +127,7 @@ Let's cut this tree down to something more managable.
 
 ```{r}
 # Read the tree from your file:
-fish.tree <- read.tree("fish_tree.tree")
+fish.tree <- read.tree("data/04_fish_tree.tree")
 fish.tree  #This tree has 7822 tips and 7821 nodes.
 ```
 
@@ -183,8 +183,8 @@ These data for barbets (a king of songbird) include various factors like wing le
 You'll notice this tree is in Nexus instead of Newick format. Nexus allows for more detailed information, and includes "blocks" of information like the taxa block. We need to read these in differently, but otherwise there shouldn't be much difference to working with Newick vs. Nexus.
 
 ```{r}
-data<- read.csv("Barbetdata.csv")
-tree<- read.nexus("BarbetTree.nexus")
+data<- read.csv("data/04_Barbetdata.csv")
+tree<- read.nexus("data/04_BarbetTree.nexus")
 ```
 
 Note we used "read.nexus" instead of "read.tree".
