@@ -16,7 +16,8 @@ In this script, I will go over basics of reading trees in R, what the tree objec
 
 + [R-sig-phylo email list serv](https://www.mail-archive.com/r-sig-phylo@r-project.org/), useful for looking up error messages.
 
-+ [Phytools blog](blog.phytools.org): by Liam Revell (author of phytools package)
++ [Phytools blog](blog.phytools.org) or 
++ [Phytools package](http://www.phytools.org/old.index.html): by Liam Revell (author of phytools package)
 
 
 **Essential packages! Install if you haven't already:**
