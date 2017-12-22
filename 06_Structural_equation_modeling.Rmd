@@ -1,0 +1,37 @@
+---
+title: "Structural equation modeling"
+author: "Sandra M Durán"
+date: "December 22, 2017"
+output: html_document
+---
+**Lesson on structural equation modeling (SEM) in R- Dec 7 2017**
+
+In this script, I cover some basics of SEM in R, specifically SEM with observed variables. The script and slides focus on developing models, and understanding model construction. 
+
+This script was developed using some online tutorials and R-code available from Dr. Jarret Byrnes and Bill Shipley. To get help in other types of SEM, and use of other packages (e.g., lavaan) check the references and links below:
+
++ [Jarret Byrnes tutorials](http://jarrettbyrnes.info/sem.shtml)
++ [Shipley 2009. Confirmatory path analysis paper](http://onlinelibrary.wiley.com/doi/10.1890/08-1034.1/abstract) Usefult to perform path analysis with categorical or presence/absence data)
++ Shipley, B. 2016. Cause and correlation in biology: a user's guide to path analysis, structural equations and causal inference with R. Cambridge University Press.
++ Grace, James B. Structural equation modeling and natural systems. Cambridge University Press, 2006.
++ [Piecewise SEM package](https://jonlefcheck.net/2014/07/06/piecewise-structural-equation-modeling-in-ecological-research/) Useful to learn model specification and run SEMs with no-continuous data. 
+
+***
+**Basic definitions of SEM**
+
+![Slide1](C:/Users/smduranm/Documents/R-lessons/EEB_R_workshops/Images/Slide.jpg)
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

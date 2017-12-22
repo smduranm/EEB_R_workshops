@@ -25,7 +25,7 @@ Check out our schedule for future workshops on the [google spreadsheet](https://
 + [RBIEN tutorial in R](03_RBIEN_tutorial.html)
 + [RBIEN tutorial in powerpoint](03_RBIEN_tutorial_4_24_2017.pptx)
 
-### 4) Phylogenetics and macroevolution in R by Liz Miller
+### 4) Phylogenetics and macroevolution by Liz Miller
 
 + [Phylogenetics analysis](04_phylogenetics_lesson_Miller.html)
 + [Datasets](https://github.com/smduranm/EEB_R_workshops/tree/master/data)
@@ -34,7 +34,9 @@ Check out our schedule for future workshops on the [google spreadsheet](https://
 
 + [ggplot2_tutorial](05_ggplot2_tutorial.html)
  
+### 6) Structural equation modeling by Sandra Durán
 
-
++ [SEM and path analysis]()
++ [Datasets]()
 
 
