@@ -19,16 +19,149 @@ This script was developed using some online tutorials and R-code available from 
 ***
 **Basic definitions of SEM**
 
-![Slide1](C:/Users/smduranm/Documents/R-lessons/EEB_R_workshops/Images/Slide.jpg)
+![Slide1](/Users/smduranm/Documents/R-lessons/EEB_R_workshops/Images/Slide1.jpg)
+![Slide2](/Users/smduranm/Documents/R-lessons/EEB_R_workshops/Images/Slide2.jpg)
+![Slide4](/Users/smduranm/Documents/R-lessons/EEB_R_workshops/Images/Slide4.jpg)
+![Slide5](/Users/smduranm/Documents/R-lessons/EEB_R_workshops/Images/Slide5.jpg)
+
+
 
 
 ```{r cars}
 summary(cars)
+
+#Set your working directory
+setwd("C:/Users/smduranm/Documents/R-lessons/EEB_R_workshops/data")
+
+
+#uploading required packages
+library(lavaan)
+library(car)
+library(QuantPsyc)
+library(ggm)
+library(semPlot)
+library(devtools)
+
+#Load your data file
+keeley<-read.csv("./Keeley_rawdata.csv")
+
+#check the data
+head(keeley)
+summary(keeley) #missing data?
+
+#Analyze the relationship between variables
+pairs(keeley) #linear relationships, normal dist, outliers
+myvars <- keeley[, c(4,6,7)]
+pairs(myvars)
+
+#Our model for today
+names(keeley)
+attach(keeley)
+
+#regression syntax versus lavaan
+aLM<-lm(cover ~ age, data=keeley)
+
+#F Table
+library(car)
+Anova(aLM)
+
+#getting coefficients
+summary(aLM)
+
+#standardized coefficients
+coef(aLM)[2]*sd(keeley$age)/sd(keeley$cover)
+
+#standardized coefficients 2
+library(QuantPsyc)
+lm.beta(aLM)
+
+
+#####
+#Multiple Regression & SEM
+#####
+
+aLM2<-lm(cover ~ age+firesev, data=keeley)
+
+#what to include...
+Anova(aLM2)
+
+#difference with anova!
+anova(aLM2)
+
+#standardized coefs
+cor(keeley$age, keeley$firesev)
+summary(aLM2)$r.squared
+lm.beta(aLM2)
+
+#finish the sem
+aLM3<-lm(firesev ~ age, data=keeley)
+Anova(aLM3)
+summary(aLM3)$r.squared
+lm.beta(aLM3)
+
+##############################
+#Moving to SEM
+##############################
+
+#Refit the new cover relationship
+fullMedLM<-lm(cover ~ firesev, data=keeley)
+summary(fullMedLM)$r.squared
+lm.beta(fullMedLM)
+
+keeley$fireCoverResiduals<-residuals(fullMedLM)
+residLM<-lm(fireCoverResiduals ~ age, data=keeley)
+Anova(residLM)
+plot(fireCoverResiduals ~ age, data=keeley)
+
+
+################################
+### SEM for Exercise
+################################
+
+#fit the pieces
+abioticLM <- lm(abiotic ~ distance, data=keeley)
+heteroLM <- lm(hetero ~ distance, data=keeley)
+richnessLM <- lm(rich ~ abiotic + distance + hetero, data=keeley)
+
+#evaluate the pieces
+Anova(abioticLM)
+Anova(heteroLM)
+Anova(richnessLM)
+
+#standardized coefficients & r^2
+lm.beta(abioticLM)
+lm.beta(heteroLM)
+lm.beta(richnessLM)
+
+summary(abioticLM)$r.squared
+summary(heteroLM)$r.squared
+summary(richnessLM)$r.squared
+
+#####
+#Evaluate Mediation
+richnessLM2 <- lm(rich ~ abiotic  + hetero, data=keeley)
+summary(richnessLM2)$r.squared
+lm.beta(richnessLM2)
+
+keeley$richnessResidual<-residuals(richnessLM2)
+richResidLM<-lm(richnessResidual ~ distance, data=keeley)
+Anova(richResidLM)
+
+#plot result
+plot(richnessResidual ~ distance, data=keeley, cex=1.5)
+abline(richResidLM, col="red", lwd=2)
+
+
+
+
+
+
+
+
+
+
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
 plot(pressure)
