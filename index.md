@@ -36,7 +36,7 @@ Check out our schedule for future workshops on the [google spreadsheet](https://
  
 ### 6) Structural equation modeling by Sandra Durán
 
-+ [SEM and path analysis](06_Structural_equation_modeling.Rmd)
++ [SEM and path analysis](06_Structural_equation_modeling.html)
 + [Datasets](https://github.com/smduranm/EEB_R_workshops/tree/master/data)
 
 
