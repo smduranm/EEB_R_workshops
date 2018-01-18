@@ -19,12 +19,7 @@ This script was developed using some online tutorials and R-code available from 
 ***
 **Basic definitions of SEM**
 
-![Slide1](/Users/smduranm/Documents/R-lessons/EEB_R_workshops/Images/Slide1.jpg)
-![Slide2](/Users/smduranm/Documents/R-lessons/EEB_R_workshops/Images/Slide2.jpg)
-![Slide4](/Users/smduranm/Documents/R-lessons/EEB_R_workshops/Images/Slide4.jpg)
-![Slide5](/Users/smduranm/Documents/R-lessons/EEB_R_workshops/Images/Slide5.jpg)
-
-
+Review attached slides 1-5 for basic definitions of SEM
 
 
 ```{r cars}
